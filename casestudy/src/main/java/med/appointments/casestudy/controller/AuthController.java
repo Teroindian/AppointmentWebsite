@@ -2,6 +2,7 @@ package med.appointments.casestudy.controller;
 
 
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 //import med.appointments.casestudy.database.dao.DoctorDAO;
@@ -10,6 +11,7 @@ import med.appointments.casestudy.database.entity.User;
 //import med.appointments.casestudy.formbean.CreateDoctorFormBean;
 import med.appointments.casestudy.formbean.RegisterUserFormBean;
 
+import med.appointments.casestudy.security.AuthenticatedUserService;
 import med.appointments.casestudy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,10 @@ class AuthController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
     @GetMapping("/auth/register")
     public ModelAndView register() {
 
@@ -44,7 +50,7 @@ class AuthController {
 
 
     @GetMapping("/auth/registerSubmit")
-    public ModelAndView registerSubmit(@Valid RegisterUserFormBean form, BindingResult bindingResult)
+    public ModelAndView registerSubmit(@Valid RegisterUserFormBean form, BindingResult bindingResult, HttpSession session)
     {
 
 
@@ -64,6 +70,11 @@ class AuthController {
         log.info("######################### In register user submit #########################");
 
         User u =   userService.createNewUser(form);
+
+
+        //this line of code will authenticate the brand new user appk
+        authenticatedUserService.authenticateNewUser(session,u.getEmail(),form.getPassword());
+
 
         ModelAndView response = new ModelAndView();
         response.setViewName("redirect:/");
