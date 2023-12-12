@@ -34,8 +34,12 @@ class SecurityConfig {
 
         // this block of code determines which requests are authenticated
         //  http.authorizeHttpRequests()
+
+
+        //any path listed here must have its own controller to handle those requests
         http.authorizeRequests()
                 .requestMatchers(
+                        new AntPathRequestMatcher("/schedule/**"),
                         new AntPathRequestMatcher("/admin/**"),
                         new AntPathRequestMatcher("/user/**")).authenticated()
                 .anyRequest().permitAll();
