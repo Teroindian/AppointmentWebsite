@@ -15,9 +15,21 @@ import org.hibernate.validator.constraints.Length;
 public class RegisterUserFormBean {
 
 
+
+
+    private String firstName;
+
+
+    private String lastName;
+
     @Email(message = " Must be valid email address")
     @NotEmpty
     private String email;
+
+
+    private String phone;
+
+    private String city;
 
     @Length(min=8, message = "Password must be at least 8 characters long")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "Password must contain at least one lowercase letter, one uppercase letter, and one digit")
@@ -27,17 +39,8 @@ public class RegisterUserFormBean {
     private String confirmPassword;
 
 
-    private String username;
 
-
-    private String firstname;
-
-
-    private String lastname;
-
-
-    private String phone;
-
+    private String userType;
 
 
 

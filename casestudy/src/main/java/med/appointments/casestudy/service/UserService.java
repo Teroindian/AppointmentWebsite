@@ -29,6 +29,11 @@ public class UserService {
 
 
         user.setEmail(form.getEmail().toLowerCase());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setPhone(form.getPhone());
+        user.setCity(form.getCity());
+        user.setUserType(form.getUserType());
 
         //user.setPassword(form.getPassword()); not encoded password
         String encoded = passwordEncoder.encode(form.getPassword());

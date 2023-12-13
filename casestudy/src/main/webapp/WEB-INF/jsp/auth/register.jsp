@@ -20,101 +20,106 @@
                 <form method="get" action="/auth/registerSubmit">
 
                 <div class="mt-3">
-                                        <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" value="${form.username}">
-                                    </div>
-                                    <c:if test="${errors.hasFieldErrors('username')}">
-                                        <div style="color:red">
-                                            <c:forEach items="${errors.getFieldErrors('username')}" var="error">
-                                                ${error.defaultMessage}<br>
-                                            </c:forEach>
-                                        </div>
-                                    </c:if>
-
-
-
-
-
-
-
-                 <div class="mt-3">
-                                         <label for="firstname" class="form-label">firstname</label>
-                                         <input type="text" class="form-control" id="firstname" name="firstname" value="${form.firstname}">
-                                     </div>
-                                     <c:if test="${errors.hasFieldErrors('firstname')}">
-                                         <div style="color:red">
-                                             <c:forEach items="${errors.getFieldErrors('firstname')}" var="error">
-                                                 ${error.defaultMessage}<br>
-                                             </c:forEach>
-                                         </div>
-                                     </c:if>
-
-
-                <div class="mt-3">
-                                        <label for="lastname" class="form-label">lastname</label>
-                                        <input type="text" class="form-control" id="lastname" name="lastname" value="${form.lastname}">
-                                    </div>
-                                    <c:if test="${errors.hasFieldErrors('lastname')}">
-                                        <div style="color:red">
-                                            <c:forEach items="${errors.getFieldErrors('lastname')}" var="error">
-                                                ${error.defaultMessage}<br>
-                                            </c:forEach>
-                                        </div>
-                                    </c:if>
-
-
-
-                    <div class="mt-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="${form.email}">
-                    </div>
-                    <c:if test="${errors.hasFieldErrors('email')}">
-                        <div style="color:red">
-                            <c:forEach items="${errors.getFieldErrors('email')}" var="error">
-                                ${error.defaultMessage}<br>
-                            </c:forEach>
-                        </div>
-                    </c:if>
-
-
-                    <div class="mt-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="password" name="password" value="${form.password}">
-                    </div>
-                    <c:if test="${errors.hasFieldErrors('password')}">
-                        <div style="color:red">
-                            <c:forEach items="${errors.getFieldErrors('password')}" var="error">
-                                ${error.defaultMessage}<br>
-                            </c:forEach>
-                        </div>
-                    </c:if>
-
-
-                    <div class="mt-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" value="${form.confirmPassword}">
-                    </div>
-                    <c:if test="${errors.hasFieldErrors('confirmPassword')}">
-                        <div style="color:red">
-                            <c:forEach items="${errors.getFieldErrors('confirmPassword')}" var="error">
-                                ${error.defaultMessage}<br>
-                            </c:forEach>
-                        </div>
-                    </c:if>
-
-
-                    <div class="mt-3">
-                                            <label for="phone" class="form-label">phone</label>
-                                            <input type="text" class="form-control" id="phone" name="phone" value="${form.phone}">
-                                        </div>
-                                        <c:if test="${errors.hasFieldErrors('phone')}">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstNameHelp" value="${form.firstName}">
+                                <div id="firstNameHelp" class="form-text">Please let us know your first name</div>
+                            </div>
+                            <c:if test="${errors.hasFieldErrors('firstName')}">
                                             <div style="color:red">
-                                                <c:forEach items="${errors.getFieldErrors('phone')}" var="error">
+                                                <c:forEach items="${errors.getFieldErrors('firstName')}" var="error">
                                                     ${error.defaultMessage}<br>
                                                 </c:forEach>
                                             </div>
                                         </c:if>
 
+                            <div class="mt-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" value="${form.lastName}">
+                            </div>
+                            <c:if test="${errors.hasFieldErrors('LastName')}">
+                                            <div style="color:red">
+                                                <c:forEach items="${errors.getFieldErrors('lastName')}" var="error">
+                                                    ${error.defaultMessage}<br>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
+
+
+
+                             <div class="mt-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="email" name="email" value="${form.email}">
+                                        </div>
+                                        <c:if test="${errors.hasFieldErrors('email')}">
+                                                        <div style="color:red">
+                                                            <c:forEach items="${errors.getFieldErrors('email')}" var="error">
+                                                                ${error.defaultMessage}<br>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </c:if>
+
+                            <div class="mt-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" value="${form.phone}">
+                            </div>
+                            <c:if test="${errors.hasFieldErrors('Phone')}">
+                                            <div style="color:red">
+                                                <c:forEach items="${errors.getFieldErrors('Phone')}" var="error">
+                                                    ${error.defaultMessage}<br>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
+
+                            <div class="mt-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city" value="${form.city}">
+                            </div>
+                            <c:if test="${errors.hasFieldErrors('City')}">
+                                            <div style="color:red">
+                                                <c:forEach items="${errors.getFieldErrors('City')}" var="error">
+                                                    ${error.defaultMessage}<br>
+                                                </c:forEach>
+                                            </div>
+                                        </c:if>
+
+
+                             <div class="mt-3">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="text" class="form-control" id="password" name="password" value="${form.password}">
+                                                </div>
+                                                <c:if test="${errors.hasFieldErrors('password')}">
+                                                    <div style="color:red">
+                                                        <c:forEach items="${errors.getFieldErrors('password')}" var="error">
+                                                            ${error.defaultMessage}<br>
+                                                        </c:forEach>
+                                                    </div>
+                                                </c:if>
+
+
+                                                <div class="mt-3">
+                                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                                    <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" value="${form.confirmPassword}">
+                                                </div>
+                                                <c:if test="${errors.hasFieldErrors('confirmPassword')}">
+                                                    <div style="color:red">
+                                                        <c:forEach items="${errors.getFieldErrors('confirmPassword')}" var="error">
+                                                            ${error.defaultMessage}<br>
+                                                        </c:forEach>
+                                                    </div>
+                                                </c:if>
+
+
+
+
+                                              <div class="mt-3">
+                                               <label for="userType" class="form-label">User Type</label>
+                                             <select class="form-select" aria-label="Default select example" id="userType" name="userType">
+                                               <option selected>Select UserType</option>
+                                               <option value="patient">Patient</option>
+                                               <option value="doctor">Doctor</option>
+
+                                             </select>
+                                             </div>
 
 
 
