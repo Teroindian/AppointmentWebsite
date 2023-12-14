@@ -1,9 +1,11 @@
 package med.appointments.casestudy.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -23,7 +25,11 @@ public class Schedule {
     @Column(name = "patient_id")
     private Integer patientId;
 
-   // @Temporal(TemporalType.TIMESTAMP)
+    //@FutureOrPresent
+    //@Column(name = "appointment_date")
+  //  private Date appointmentDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "appointment_date")
     private Date appointmentDate;
 
