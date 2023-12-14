@@ -26,15 +26,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <section class="pt-5 pb-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -42,15 +33,20 @@
                 <!-- the action attribute on the form tag is the URL that the form will submit to when then user clicks the submit button -->
                 <form method="post" action="/auth/loginSubmit">
 
+
+
+
+
                     <div class="mt-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <input type="text" class="form-control ${param['error'] eq 'true' ? 'is-invalid' : ''}" id="username" name="username">
                     </div>
 
                     <div class="mt-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control ${param['error'] eq 'true' ? 'is-invalid' : ''}" id="password" name="password">
                     </div>
+
 
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>

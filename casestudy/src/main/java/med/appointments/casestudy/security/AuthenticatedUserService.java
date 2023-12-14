@@ -55,6 +55,22 @@ public class AuthenticatedUserService {
     }
 
 
+    // New method to authenticate user
+    public User authenticateUser(String username, String unencryptedPassword) {
+        Authentication request = new UsernamePasswordAuthenticationToken(username, unencryptedPassword);
+
+        try {
+            Authentication result = authenticationManager.authenticate(request);
+            SecurityContext sc = SecurityContextHolder.getContext();
+            sc.setAuthentication(result);
+            return userDao.findByEmailIgnoreCase(username);
+        } catch (Exception e) {
+            // Authentication failed
+            return null;
+        }
+    }
+
+
 }
 
 

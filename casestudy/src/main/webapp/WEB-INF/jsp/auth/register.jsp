@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <!-- the action attribute on the form tag is the URL that the form will submit to when then user clicks the submit button -->
-                <form method="get" action="/auth/registerSubmit">
+                <form method="post" action="/auth/registerSubmit" modelAttribute="RegisterUserFormBean">
 
                 <div class="mt-3">
                                 <label for="firstName" class="form-label">First Name</label>

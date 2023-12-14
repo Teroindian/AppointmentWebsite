@@ -4,6 +4,8 @@ package med.appointments.casestudy.config;
 
 
 import lombok.extern.slf4j.Slf4j;
+import med.appointments.casestudy.security.AuthenticationSuccessHandlerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +26,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 
 class SecurityConfig {
+
+
+    @Autowired
+    private AuthenticationSuccessHandlerImpl authenticationSuccessHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -46,6 +52,7 @@ class SecurityConfig {
 
         // this is telling us the URL for the login page and the URL to submit the login form
         http.formLogin(formLogin -> formLogin
+                .successHandler(authenticationSuccessHandler)
                 // this is the URL for the login page
                 .loginPage("/auth/login")
                 // this is the URL to submit the login form
