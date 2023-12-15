@@ -25,11 +25,8 @@ public class Schedule {
     @Column(name = "patient_id")
     private Integer patientId;
 
-    //@FutureOrPresent
-    //@Column(name = "appointment_date")
-  //  private Date appointmentDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    @FutureOrPresent
+     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "appointment_date")
     private Date appointmentDate;
 
@@ -43,3 +40,7 @@ public class Schedule {
 
 
 }
+/*   private Date appointmentDate;
+
+ private String comments;
+ */

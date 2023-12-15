@@ -43,6 +43,7 @@
                             <td>Phone</td>
                             <td>City</td>
                             <td>UserType</td>
+                            <td>Book Appointment<td>
                         </tr>
                         <c:forEach items="${userVar}" var="user">
                             <c:if test="${user.userType eq 'doctor'}">
@@ -54,6 +55,7 @@
                                     <td>${user.phone}</td>
                                     <td>${user.city}</td>
                                     <td>${user.userType}</td>
+                                    <td><a href="/doctor/schedule/${user.id}"</a>Book Appointment</td>
                                 </tr>
                             </c:if>
                         </c:forEach>

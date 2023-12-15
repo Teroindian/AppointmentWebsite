@@ -45,7 +45,7 @@ class SecurityConfig {
         //any path listed here must have its own controller to handle those requests
         http.authorizeRequests()
                 .requestMatchers(
-                        new AntPathRequestMatcher("/schedule/**"),
+                        new AntPathRequestMatcher("/doctor/schedule/**"),
                         new AntPathRequestMatcher("/admin/**"),
                         new AntPathRequestMatcher("/user/**")).authenticated()
                 .anyRequest().permitAll();
