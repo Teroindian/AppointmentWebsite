@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @Setter
 public class CreateAppointmentFormBean {
 
-    private Integer doctorScheduleId;
+  //  private Integer ScheduleId;
     private String appointmentDate;
     private String comments;
+    private Integer doctorId;
 }
