@@ -81,21 +81,36 @@
 <!-- Form for creating appointments -->
 <form action="/schedule/create-appointment" method="post">
     <!-- Add hidden input to pass doctor's schedule ID -->
-    <input type="hidden" name="doctorScheduleId" value="${schedule.id}">
+     <!--  <input type="hidden" name="doctorScheduleId" value="${schedule.id}"> -->
 
-    <!-- Appointment Date -->
-    <div class="form-group">
-        <label for="appointmentDate">Appointment Date:</label>
-        <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
+   <!-- Use the doctor's ID for the appointment -->
+   <div class="mt-3">
+       <label for="doctorId" class="form-label">Doctor ID</label>
+       <input type="text" class="form-control" id="doctorId" name="doctorId" placeholder="Enter Doctor ID" required>
+   </div>
+
+   <!-- Appointment Date -->
+   <div class="form-group pt-3">
+       <label for="appointmentDate">Appointment Date:</label>
+       <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
+   </div>
+
+   <!-- Comments -->
+   <div class="form-group">
+       <label for="comments">Comments:</label>
+       <textarea id="comments" name="comments" rows="4"></textarea>
+   </div>
+
+   <button type="submit" class="btn btn-primary">Create Appointment</button>
+
+            </div>
+        </div>
     </div>
-
-    <!-- Comments -->
-    <div class="form-group">
-        <label for="comments">Comments:</label>
-        <textarea id="comments" name="comments" rows="4"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create Appointment</button>
 </form>
+
+
+
+
+
 
 <jsp:include page="../include/footer.jsp"/>
