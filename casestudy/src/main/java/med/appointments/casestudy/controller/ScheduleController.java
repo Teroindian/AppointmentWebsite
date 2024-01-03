@@ -89,6 +89,58 @@ public class ScheduleController {
     // New method to handle the form submission for creating a new appointment
     @PostMapping("/schedule/create-appointment")
     public ModelAndView createAppointment(@RequestParam(name = "doctorId", required = false) Integer doctorId,
+                                          @RequestParam(name = "locationId", required = false) Integer locationId,
+                                          @Valid CreateAppointmentFormBean form,
+                                          BindingResult bindingResult,
+                                          Principal principal) {
+
+        ModelAndView response = new ModelAndView("redirect:/doctor/schedule/" + doctorId);
+
+        // Check if doctorId is null or not
+        if (doctorId == null) {
+            // Handle the case where doctorId is not provided
+            return response.addObject("error", "Doctor ID is required");
+        }
+
+        // Check if locationId is null or not
+        if (locationId == null) {
+            // Handle the case where locationId is not provided
+            return response.addObject("error", "Location ID is required");
+        }
+
+        if (bindingResult.hasErrors()) {
+            // If there are validation errors, handle them as needed
+            // Redirect back to the create appointment form with an error message, for example
+            return response.addObject("error", "Invalid input for appointment");
+        }
+
+        // Get the logged-in user's ID
+        String username = principal.getName();
+        User loggedInUser = userService.findUserByEmail(username);
+
+        // Check if the logged-in user is a patient
+        if (userService.isPatient(loggedInUser.getId())) {
+            // If the logged-in user is a patient, use their ID as the patient ID
+            Integer patientId = loggedInUser.getId();
+
+            // Create a new appointment
+            Schedule createdAppointment = appointmentService.createNewAppointment(patientId, doctorId, locationId, form);
+
+            if (createdAppointment == null) {
+                // Handle the case where the appointment creation fails
+                return response.addObject("error", "Failed to create appointment");
+            }
+
+            // Optionally, you can add a success message
+            return response.addObject("success", "Appointment created successfully");
+        } else {
+            // If the logged-in user is not a patient, return an error
+            return response.addObject("error", "You are not authorized to create appointments");
+        }
+    }
+
+    /* @PostMapping("/schedule/create-appointment")
+    public ModelAndView createAppointment(@RequestParam(name = "doctorId", required = false) Integer doctorId,
                                           @Valid CreateAppointmentFormBean form,
                                           BindingResult bindingResult,
                                            Principal principal) {
@@ -130,7 +182,7 @@ public class ScheduleController {
             // If the logged-in user is not a patient, return an error
             return response.addObject("error", "You are not authorized to create appointments");
         }
-    }
+    }*/
 
 }
 

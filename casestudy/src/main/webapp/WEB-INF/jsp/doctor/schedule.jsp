@@ -80,37 +80,41 @@
 
 <!-- Form for creating appointments -->
 <form action="/schedule/create-appointment" method="post">
-    <!-- Add hidden input to pass doctor's schedule ID -->
-     <!--  <input type="hidden" name="doctorScheduleId" value="${schedule.id}"> -->
-
-   <!-- Use the doctor's ID for the appointment -->
-   <div class="mt-3">
-       <label for="doctorId" class="form-label">Doctor ID</label>
-       <input type="text" class="form-control" id="doctorId" name="doctorId" placeholder="Enter Doctor ID" required>
-   </div>
-
-   <!-- Appointment Date -->
-   <div class="form-group pt-3">
-       <label for="appointmentDate">Appointment Date:</label>
-       <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
-   </div>
-
-   <!-- Comments -->
-   <div class="form-group">
-       <label for="comments">Comments:</label>
-       <textarea id="comments" name="comments" rows="4"></textarea>
-   </div>
-
-   <button type="submit" class="btn btn-primary">Create Appointment</button>
-
-            </div>
-        </div>
+    <!-- Doctor ID (Assuming the patient knows the doctor's ID) -->
+    <div class="mt-3">
+        <label for="doctorId" class="form-label">Doctor ID:</label>
+        <input type="text" class="form-control" id="doctorId" name="doctorId" placeholder="Enter Doctor ID" required>
     </div>
+
+    <!-- Appointment Date -->
+    <div class="form-group pt-3">
+        <label for="appointmentDate">Appointment Date:</label>
+        <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
+    </div>
+
+    <!-- Comments -->
+    <div class="form-group">
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4"></textarea>
+    </div>
+
+    <!-- Location Selection (Dropdown) -->
+    <div class="form-group">
+        <label for="locationId">Location:</label>
+        <select id="locationId" name="locationId" required>
+            <option value="" disabled selected>Select a location</option>
+            <!-- Populate this list dynamically with locations from the server -->
+
+                        <option value="1">Hospital A</option>
+                        <option value="2">Clinic B</option>
+                        <!-- Add more options as needed -->
+
+            <!-- This part needs to be populated dynamically based on your data -->
+        </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Create Appointment</button>
 </form>
-
-
-
-
-
 
 <jsp:include page="../include/footer.jsp"/>

@@ -11,6 +11,9 @@ public interface ScheduleDAO  extends JpaRepository<Schedule, Long> {
      public Schedule findById(Integer id);
 
 
+     // Example: Find a schedule by location ID
+    public  Schedule findByLocationId(Integer locationId);
+
      // Add a method to retrieve schedules by doctorId
      // List<Schedule> findByDoctorId(Integer doctorId);
 }

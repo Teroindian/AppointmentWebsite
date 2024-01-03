@@ -33,13 +33,17 @@ public class Schedule {
     @Column(name = "comments")
     private String comments;
 
-    @Column(name = "location_id_number")
-    private Integer locationId;
 
 
+    //@ManyToOne(cascade = {CascadeType.ALL, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "location_id_number")
+    private Location location;  // Use Location entity for association
 
 
 }
+
+
 /*   private Date appointmentDate;
 
  private String comments;

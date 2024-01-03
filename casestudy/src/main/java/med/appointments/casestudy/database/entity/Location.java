@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "location")
 @Getter
@@ -21,6 +23,8 @@ public class Location {
     @Column(name = "city")
     private String city;
 
-
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Schedule> schedules;
 
 }
