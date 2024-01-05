@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class UserService {
@@ -40,7 +42,21 @@ public class UserService {
     public boolean isPatient(Integer userId) {
         User user = userDAO.findById(userId);
         return user != null && "patient".equals(user.getUserType());
+
     }
+
+    public boolean isDoctor(Integer userId) {
+        User user = userDAO.findById(userId);
+        return user != null && "doctor".equals(user.getUserType());
+    }
+
+   // public Optional<User> getDoctorByUsername(String username) {
+ //       return userDAO.findByEmailAndUserType(username, "doctor");
+   // }
+
+
+
+
 
     public User findUserByEmail(String email) {
         return userDAO.findByEmailIgnoreCase(email);
