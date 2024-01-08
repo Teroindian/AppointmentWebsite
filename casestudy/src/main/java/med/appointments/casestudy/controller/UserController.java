@@ -52,7 +52,7 @@ public class UserController {
         return response;
     }
 
-    @PostMapping("/users/doctorhome/show")
+  /*  @PostMapping("/users/doctorhome/show")
     public String showDoctorHome(Model model) {
         // Get the logged-in user's username
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -77,7 +77,47 @@ public class UserController {
             log.error("User with username {} is not a doctor or is not a valid user", username);
             return "error"; // Redirect to an error page or handle appropriately
         }
+    }*/
+
+
+  //  @PostMapping("/users/doctorhome/show")
+    @PostMapping("/users/doctorhome/show")
+    public String showDoctorHome(Model model) {
+        // Get the logged-in user's username
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // Get the logged-in user's ID
+        Integer userId = userService.findUserByEmail(username).getId();
+
+        // Check if the user is a doctor
+        if (userService.isDoctor(userId)) {
+            // Fetch upcoming appointments for the doctor
+            List<Schedule> upcomingAppointments = scheduleDAO.findUpcomingAppointmentsForDoctor(userId);
+
+            // Iterate over each appointment to fetch patient names
+            for (Schedule appointment : upcomingAppointments) {
+                Integer patientId = appointment.getPatientId();
+
+                // Use the UserDAO method to find the patient by ID
+                Optional<User> patient = userDAO.findPatientById(patientId);
+
+                // If patient is present, set the patient name in the Schedule entity
+                patient.ifPresent(user -> appointment.setPatientName(user.getFirstName() + " " + user.getLastName()));
+            }
+
+            // Add the updated upcoming appointments to the model
+            model.addAttribute("scheduleVar", upcomingAppointments);
+
+            log.debug("In showDoctorHome");
+            return "users/doctorhome";
+        } else {
+            // Handle the case where the user is not a doctor or is not a valid user
+            log.error("User with username {} is not a doctor or is not a valid user", username);
+            return "error"; // Redirect to an error page or handle appropriately
+        }
     }
+
 
 
 

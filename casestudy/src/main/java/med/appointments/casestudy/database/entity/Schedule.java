@@ -41,6 +41,12 @@ public class Schedule {
     private Location location;  // Use Location entity for association
 
 
+
+    // Add a transient property for patientName
+    @Transient
+    private String patientName;
+
+
 }
 
 
