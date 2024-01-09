@@ -23,11 +23,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/home/page">Home Page</a>
+                    <a class="nav-link" href="/users/doctorhome">Home Page</a>
                 </li>
-                <li class="nav-item">
-                                    <a class="nav-link" href="/home/appointments">Upcoming Appointments</a>
-                </li>
+
 
                 <li class="nav-item">
                            <a class="nav-link" href="/logout">Sign Out</a>

@@ -53,7 +53,7 @@ class AuthController {
 
 
 
-/*    @PostMapping("/auth/loginSubmit")
+    @PostMapping("/auth/loginSubmit")
     public ModelAndView loginSubmit(@RequestParam String username, @RequestParam String password, HttpSession session) {
         // Authenticate the user
         User user = authenticatedUserService.authenticateUser(username, password);
@@ -65,7 +65,7 @@ class AuthController {
             if ("doctor".equals(user.getUserType())) {
                 response.setViewName("redirect:/users/doctorhome");
             } else if ("patient".equals(user.getUserType())) {
-                response.setViewName("redirect:/home/search");
+                response.setViewName("redirect:/home/page");  // Update redirect URL to /home/page
             } else {
                 // Default redirect for other roles or unknown roles
                 response.setViewName("redirect:/");
@@ -81,8 +81,7 @@ class AuthController {
             response.addObject("error", "Invalid credentials");
             return response;
         }
-    }*/
-
+    }
 
 
 
@@ -124,9 +123,9 @@ class AuthController {
        // response.setViewName("redirect:http://localhost:8080/users/doctor-home");
 
     } else if ("patient".equals(user.getUserType())) {
-        response.setViewName("redirect:/home/search");
+        response.setViewName("redirect:/home/page");
     } else {
-        response.setViewName("redirect:/");
+        response.setViewName("redirect:error/404");
     }
 
     return response;

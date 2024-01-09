@@ -30,7 +30,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         if ("doctor".equals(user.getUserType())) {
             response.sendRedirect("/users/doctorhome");
         } else if ("patient".equals(user.getUserType())) {
-            response.sendRedirect("/home/search");
+            response.sendRedirect("/home/page");
         } else {
             // Default redirect for other roles or unknown roles
             response.sendRedirect("/");

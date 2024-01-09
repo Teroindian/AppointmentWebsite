@@ -129,15 +129,16 @@ public class ScheduleController {
             if (createdAppointment == null) {
                 // Handle the case where the appointment creation fails
                 return response.addObject("error", "Failed to create appointment");
+            } else {
+                // Appointment created successfully, add a success message
+                return response.addObject("success", "Appointment created successfully");
             }
-
-            // Optionally, you can add a success message
-            return response.addObject("success", "Appointment created successfully");
         } else {
             // If the logged-in user is not a patient, return an error
             return response.addObject("error", "You are not authorized to create appointments");
         }
     }
+
 
     /* @PostMapping("/schedule/create-appointment")
     public ModelAndView createAppointment(@RequestParam(name = "doctorId", required = false) Integer doctorId,

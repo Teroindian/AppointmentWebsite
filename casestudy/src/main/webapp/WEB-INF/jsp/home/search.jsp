@@ -6,19 +6,49 @@
     <div class="bg-light2 pt-5 pb-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="m-0">Home Page</h1>
+                <h1 class="m-0">Search Page</h1>
             </div>
         </div>
     </div>
 </section>
 
-<section class="d-flex justify-content-center align-items-center vh-100">
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" action="/home/search" method="get">
-            <input class="form-control mr-sm-2" id="searchQuery" name="searchQuery" type="text" placeholder="Search Doctor" aria-label="Search" value="${searchQuery}">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
+<section>
+    <div class="bg-light2 pt-5 pb-5" id="welcomeSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-3">
+                        Welcome <%= org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName() %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var welcomeSection = document.getElementById("welcomeSection");
+
+        // Add Bootstrap classes for styling
+        welcomeSection.classList.add("fade", "show");
+
+        setTimeout(function() {
+            // Hide the welcome section with Bootstrap fade-out effect
+            welcomeSection.classList.remove("show");
+        }, 3000);
+    });
+</script>
+
+<section class="d-flex align-items-center justify-content-center vh-100">
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <form class="d-flex" action="/home/search" method="get">
+                <input class="form-control me-2" id="searchQuery" name="searchQuery" type="text" placeholder="Search Doctor" aria-label="Search" value="${searchQuery}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </nav>
+    </div>
 </section>
 
 <c:if test="${userNotFound}">
@@ -26,7 +56,6 @@
         User not found.
     </div>
 </c:if>
-
 
 <c:if test="${not empty userVar}">
     <section class="bg-light1 pb-5">

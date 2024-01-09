@@ -62,9 +62,9 @@ class SecurityConfig {
         http.logout(formLogout -> formLogout
                 .invalidateHttpSession(true)
                 // this is the URL to submit the logout form
-                .logoutUrl("/auth/logout")
+                .logoutUrl("/logout")
                 // this is the URL to go to after logout
-                .logoutSuccessUrl("/"));
+                .logoutSuccessUrl("/auth/login"));
 
         return http.build();
     }

@@ -40,6 +40,107 @@ public class UserController {
 
 
 
+  /*  @GetMapping("/home/appointments")
+    public ModelAndView appointments(
+    ){
+        ModelAndView response = new ModelAndView("home/appointments");
+
+        log.debug(" In create home doctor with no Args");
+        return response;
+    }*/
+ /* @GetMapping("/home/appointments")
+  public ModelAndView showPatientAppointments() {
+      ModelAndView modelAndView = new ModelAndView("home/appointments");
+
+      // Get the logged-in user's username
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String username = authentication.getName();
+
+      // Get the logged-in user's ID
+      Integer patientId = userService.findUserByEmail(username).getId();
+
+      // Check if the user is a patient
+      if (userService.isPatient(patientId)) {
+          // The user is a patient
+          // Fetch upcoming appointments for the patient
+          List<Schedule> upcomingAppointments = scheduleDAO.findByPatientId(patientId);
+
+          // Add the upcoming appointments to the model
+          modelAndView.addObject("appointmentsVar", upcomingAppointments);
+
+          log.debug("In showPatientAppointments");
+      } else {
+          // Handle the case where the user is not a patient or is not a valid user
+          log.error("User with username {} is not a patient or is not a valid user", username);
+          // Redirect to an error page or handle appropriately
+          modelAndView.setViewName("error");
+      }
+
+      return modelAndView;
+  }*/
+
+
+
+    @GetMapping("/home/appointments")
+    public ModelAndView showPatientAppointments() {
+        ModelAndView modelAndView = new ModelAndView("home/appointments");
+
+        // Get the logged-in user's username
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // Get the logged-in user's ID
+        Integer patientId = userService.findUserByEmail(username).getId();
+
+        // Check if the user is a patient
+        if (userService.isPatient(patientId)) {
+            // The user is a patient
+            // Fetch upcoming appointments for the patient
+            List<Schedule> upcomingAppointments = scheduleDAO.findByPatientId(patientId);
+
+            // Fetch and set doctor information for each appointment
+            for (Schedule appointment : upcomingAppointments) {
+                Integer doctorId = appointment.getDoctorId();
+                Optional<User> doctorOptional = userDAO.findDoctorById(doctorId);
+
+                // Check if the doctor exists
+                if (doctorOptional.isPresent()) {
+                    User doctor = doctorOptional.get();
+                    // Set doctor name in the Schedule entity
+                    appointment.setDoctorName(doctor.getFirstName() + " " + doctor.getLastName());
+                } else {
+                    // Handle the case where the doctor is not found (optional)
+                    // You can log an error or handle it based on your requirements
+                }
+            }
+
+            // Add the upcoming appointments to the model
+            modelAndView.addObject("appointmentsVar", upcomingAppointments);
+
+            log.debug("In showPatientAppointments");
+        } else {
+            // Handle the case where the user is not a patient or is not a valid user
+            log.error("User with username {} is not a patient or is not a valid user", username);
+            // Redirect to an error page or handle appropriately
+            modelAndView.setViewName("error");
+        }
+
+        return modelAndView;
+    }
+
+
+
+
+
+
+    @GetMapping("/home/page")
+    public ModelAndView homePage(
+    ){
+        ModelAndView response = new ModelAndView("home/page");
+
+        log.debug(" In create home doctor with no Args");
+        return response;
+    }
 
 
 
