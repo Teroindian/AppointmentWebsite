@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -45,6 +46,36 @@ public class Schedule {
     // Add a transient property for patientName
     @Transient
     private String patientName;
+
+    @Transient
+    private String doctorName; // This field won't be persisted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Custom method for setting appointmentDate with LocalDateTime
+    public void setAppointmentDateFromLocalDateTime(LocalDateTime localDateTime) {
+        this.appointmentDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
 
 
 }
